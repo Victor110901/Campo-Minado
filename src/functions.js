@@ -44,10 +44,10 @@ const cloneBoard = board => {
     })
 }
 
-const getNeighbors = (board, rowm, column) => {
+const getNeighbors = (board, row, column) => {
     const neighboars = []
     const rows = [row -1, row, row +1]
-    const columns = [clumn -1, column, column +1]
+    const columns = [column -1, column, column +1]
     rows.forEach(r => {
         columns.forEach(c => {
             const different = r !== row || c !== column
@@ -85,7 +85,7 @@ const openField = (board, row, column) => {
 const fields = board => [].concat(...board)
 const hadExplosion = board => fields(board)
     .filter(field => field.exploded).length > 0
-const pendding = field => (field,mined && !field.flagged)
+const pendding = field => (field.mined && !field.flagged)
     || (!field.mined && !field.opened)
 const wonGame = board => fields(board).filter(pendding).length === 0
 const showMines = board => fields(board).filter(field => field.mined)
